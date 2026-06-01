@@ -96,10 +96,10 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
                 role="radio"
                 aria-checked={activeVariant === v}
                 onClick={() => setActiveVariant(v)}
-                className={`font-mono-space text-xs tracking-[2px] uppercase px-8 py-3.5 transition-all duration-300 rounded-lg cursor-pointer ${
+                className={`font-mono-space text-sm tracking-[2px] uppercase px-9 py-3.5 transition-all duration-300 rounded-lg cursor-pointer ${
                   activeVariant === v
                     ? 'bg-[#1A0800] text-[#FAF3E0] shadow-md font-bold'
-                    : 'text-[#1A0800] hover:bg-[#1A0800]/5'
+                    : 'text-[#1A0800] hover:bg-[#1A0800]/5 font-semibold'
                 }`}
               >
                 {v === 'Color' ? 'Color' : 'Silver'}
@@ -110,7 +110,7 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
           {/* Quiet credential badges */}
           <div className="flex flex-wrap gap-2.5">
             {['✓ 100 माने पूरे 100', '✓ पर्ची अंदर', '✓ मशीन से सील'].map(b => (
-              <span key={b} className="font-mono-space text-[10px] tracking-[1.5px] px-3.5 py-2 bg-[#1A0800] text-[#D4A84B] border border-[#D4A84B]/20 rounded-md shadow-sm">
+              <span key={b} className="font-mono-space text-xs tracking-[1.5px] px-4.5 py-2.5 bg-[#1A0800] text-[#D4A84B] border border-[#D4A84B]/20 rounded-md shadow-sm">
                 {b}
               </span>
             ))}
@@ -183,17 +183,17 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
                   {/* Details Area — padding 20px */}
                   <div className="p-6 flex flex-col flex-1">
                     {/* Size mark — top */}
-                    <span className="font-mono-space text-[10px] text-[#F5C563] font-bold uppercase tracking-[0.2em] mb-2 block">
+                    <span className="font-mono-space text-xs text-[#F5C563] font-bold uppercase tracking-[0.2em] mb-2 block">
                       {product.size.replace('"', '')} INCH SIZE
                     </span>
 
                     {/* Hindi Name */}
-                    <h3 className="font-baloo text-2xl font-bold text-[#1A0800] leading-none mb-1">
+                    <h3 className="font-baloo text-2xl md:text-3xl font-extrabold text-[#1A0800] leading-none mb-1.5">
                       {product.nameHi}
                     </h3>
 
                     {/* English Name */}
-                    <p className="font-dm text-xs text-[#6B5B4E] mb-5">
+                    <p className="font-dm text-sm text-[#6B5B4E] mb-5">
                       {product.nameEn}
                     </p>
 
@@ -202,17 +202,17 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
 
                     {/* Packing Details block */}
                     <div className="mb-5 flex items-center justify-between">
-                      <span className="font-mono-space text-xs text-[#6B5B4E] tracking-wide">
+                      <span className="font-mono-space text-sm text-[#6B5B4E] tracking-wide font-medium">
                         Standard Packing
                       </span>
-                      <span className="font-mono-space text-xs font-bold text-[#1A0800]">
+                      <span className="font-mono-space text-sm font-extrabold text-[#1A0800]">
                         {product.pack.replace('pcs', 'Pcs')}
                       </span>
                     </div>
 
                     {/* Meta Chips */}
                     <div className="flex flex-wrap gap-1.5 mb-6 mt-auto">
-                      <span className="font-dm text-[11px] text-[#6B5B4E] bg-[#1A0800]/5 px-3.5 py-1.5 rounded-full border border-[#1A0800]/5">
+                      <span className="font-dm text-xs text-[#6B5B4E] bg-[#1A0800]/5 px-3.5 py-1.5 rounded-full border border-[#1A0800]/5">
                         {product.bestFor}
                       </span>
                     </div>
@@ -222,13 +222,13 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
                       href={getWhatsAppLink(whatsappNumber, product.nameHi, product.nameEn, product.size, activeVariant, product.pack)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative overflow-hidden bg-[#C8181A] text-white font-dm font-semibold text-xs py-3.5 rounded-lg w-full flex items-center justify-center cursor-pointer border border-[#D4A84B]/20 hover:border-[#D4A84B]/40 shadow-sm"
+                      className="relative overflow-hidden bg-[#C8181A] text-white font-dm font-semibold text-sm py-4 rounded-lg w-full flex items-center justify-center cursor-pointer border border-[#D4A84B]/20 hover:border-[#D4A84B]/40 shadow-sm"
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
                       {/* Gold shimmer sweep */}
                       <span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4A84B]/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                      <span className="relative tracking-[0.05em] uppercase">WhatsApp pe Order Karo</span>
+                      <span className="relative tracking-[0.05em] uppercase font-bold text-xs">WhatsApp pe Order Karo</span>
                     </motion.a>
                   </div>
                 </motion.div>

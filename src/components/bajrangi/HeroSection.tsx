@@ -48,14 +48,14 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
       />
 
       {/* ── Top bar — stamp ── */}
-      <div className="relative z-10 bg-[#C8181A] px-6 md:px-12 lg:px-20 py-2.5 flex items-center justify-between">
-        <span className="font-mono-space text-[9px] tracking-[4px] text-white/90 uppercase">
+      <div className="relative z-10 bg-[#C8181A] px-6 md:px-12 lg:px-20 py-3 flex items-center justify-between">
+        <span className="font-mono-space text-[11px] md:text-xs tracking-[4px] text-white/95 uppercase font-medium">
           Eshanura Enterprises Pvt. Ltd.
         </span>
-        <span className="font-mono-space text-[9px] tracking-[3px] text-white/90 uppercase hidden md:block">
+        <span className="font-mono-space text-[11px] md:text-xs tracking-[3px] text-white/95 uppercase hidden md:block font-medium">
           Lakhimpur-Kheri, U.P.
         </span>
-        <span className="font-mono-space text-[9px] tracking-[3px] text-white/90 uppercase">
+        <span className="font-mono-space text-[11px] md:text-xs tracking-[3px] text-white/95 uppercase font-semibold">
           9839436346
         </span>
       </div>
@@ -90,7 +90,7 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
 
           {/* The proof — three facts, no fluff */}
           <motion.div
-            className="flex flex-col gap-3 mb-10"
+            className="flex flex-col gap-4 mb-10"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
@@ -100,12 +100,12 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
               { label: 'पर्ची अंदर', sub: 'गिनती की गवाही।' },
               { label: 'मशीन से सील', sub: 'खुल नहीं सकता।' },
             ].map(({ label, sub }) => (
-              <div key={label} className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C8181A] flex-shrink-0" />
-                <span className="font-baloo font-bold text-white text-base md:text-lg leading-none">
+              <div key={label} className="flex items-center gap-3.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#C8181A] flex-shrink-0" />
+                <span className="font-baloo font-extrabold text-white text-xl md:text-2xl leading-none">
                   {label}
                 </span>
-                <span className="font-mono-space text-[10px] text-white/60 tracking-wide hidden sm:block">
+                <span className="font-mono-space text-sm md:text-base text-white/90 tracking-wide hidden sm:block">
                   — {sub}
                 </span>
               </div>
@@ -171,23 +171,23 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
 
           {/* Count stamp — overlaid on the pack */}
           <motion.div
-            className="absolute bottom-4 right-4 bg-[#C8181A] px-4 py-2.5 z-20"
+            className="absolute bottom-4 right-4 bg-[#C8181A] px-5 py-3 z-20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.7 }}
           >
-            <p className="font-mono-space font-bold text-white text-lg md:text-2xl leading-none">100</p>
-            <p className="font-mono-space text-white/90 text-[9px] tracking-[2px] uppercase">pcs inside</p>
+            <p className="font-mono-space font-bold text-white text-xl md:text-3xl leading-none">100</p>
+            <p className="font-mono-space text-white/95 text-[11px] md:text-xs tracking-[2px] uppercase font-semibold">pcs inside</p>
           </motion.div>
 
           {/* Seal badge */}
           <motion.div
-            className="absolute top-4 left-4 border border-[#D4A84B]/40 bg-[#1a0a02] px-3 py-1.5 z-20"
+            className="absolute top-4 left-4 border border-[#D4A84B]/45 bg-[#1a0a02] px-4 py-2 z-20"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.85 }}
           >
-            <p className="font-mono-space text-[#D4A84B] text-[9px] tracking-[2px] uppercase">Machine Sealed</p>
+            <p className="font-mono-space text-[#D4A84B] text-[11px] md:text-xs tracking-[2px] uppercase font-bold">Machine Sealed</p>
           </motion.div>
         </div>
       </div>

@@ -37,8 +37,8 @@ export function ThreeTruths() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-mono-space text-[#F5C563] text-[10px] tracking-[4px] uppercase mb-3">बजरंगी क्यों?</p>
-          <h2 className="font-baloo text-[clamp(28px,5vw,48px)] text-white font-extrabold leading-tight">
+          <p className="font-mono-space text-[#F5C563] text-xs md:text-sm tracking-[4px] uppercase mb-3">बजरंगी क्यों?</p>
+          <h2 className="font-baloo text-[clamp(32px,5.5vw,54px)] text-white font-extrabold leading-tight">
             तीन बातें। <span className="text-shimmer">सीधी।</span>
           </h2>
         </motion.div>
@@ -55,19 +55,19 @@ export function ThreeTruths() {
               transition={{ duration: 0.5, delay: i * 0.12 }}
             >
               {/* Number watermark */}
-              <span className="absolute top-5 right-6 font-mono-space text-[80px] font-bold text-white/[0.03] select-none pointer-events-none leading-none">
+              <span className="absolute top-5 right-6 font-mono-space text-[100px] font-bold text-white/[0.03] select-none pointer-events-none leading-none">
                 {truth.number}
               </span>
 
-              <div className="text-3xl mb-6">{truth.icon}</div>
+              <div className="text-4xl mb-6">{truth.icon}</div>
 
               {/* The line — the only thing that matters */}
-              <h3 className="font-baloo text-[clamp(24px,4vw,32px)] text-white font-extrabold leading-tight mb-2">
+              <h3 className="font-baloo text-[clamp(28px,4.5vw,36px)] text-white font-extrabold leading-tight mb-2.5">
                 {truth.line}
               </h3>
 
               {/* Sub — 3 words max */}
-              <p className="font-mono-space text-[#F5C563] text-sm tracking-wide">
+              <p className="font-mono-space text-[#F5C563] text-base md:text-lg tracking-wide">
                 {truth.sub}
               </p>
             </motion.div>
