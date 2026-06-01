@@ -74,10 +74,6 @@ export function Footer({ whatsappNumber, phone, email, address }: FooterProps) {
                   <span className="text-[#F5C563]/55 block text-xs uppercase tracking-wider font-mono-space font-semibold mb-1">Registered Address</span>
                   908, Hathipur Uttari Seth Ghat Road, Lakhimpur Kheri, Uttar Pradesh - 262701
                 </p>
-                <p className="font-dm">
-                  <span className="text-[#F5C563]/55 block text-xs uppercase tracking-wider font-mono-space font-semibold mb-1">Directors</span>
-                  Shiva Gupta, Gaurav Gupta
-                </p>
               </div>
             </div>
           </div>
@@ -102,15 +98,6 @@ export function Footer({ whatsappNumber, phone, email, address }: FooterProps) {
                   className="font-dm text-lg text-white/90 hover:text-[#F5C563] transition-colors break-all font-medium"
                 >
                   {email}
-                </a>
-              </div>
-              <div>
-                <p className="font-mono-space text-white/50 text-xs tracking-[2px] uppercase font-semibold mb-1.5">Corporate Inquiry</p>
-                <a
-                  href="mailto:eshanurapvtltd@gmail.com"
-                  className="font-dm text-lg text-white/90 hover:text-[#F5C563] transition-colors break-all font-medium"
-                >
-                  eshanurapvtltd@gmail.com
                 </a>
               </div>
               <div className="grid grid-cols-2 gap-4 pt-1">
