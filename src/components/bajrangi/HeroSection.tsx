@@ -147,7 +147,7 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
         </div>
 
         {/* RIGHT — merged full-bleed product shot */}
-        <div className="lg:w-[58%] w-full h-[340px] sm:h-[440px] lg:h-[580px] relative overflow-hidden">
+        <div className="lg:w-[58%] w-full aspect-[2752/1536] relative overflow-hidden">
           <motion.div
             style={{ y: packY, opacity: packOpacity }}
             initial={{ opacity: 0, scale: 0.95 }}
