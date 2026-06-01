@@ -85,7 +85,7 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
           >
-            Matlab Bharosa<span className="text-[#C8181A]">।</span>
+            मतलब भरोसा<span className="text-[#C8181A]">।</span>
           </motion.p>
 
           {/* The proof — three facts, no fluff */}
@@ -146,61 +146,48 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
           </motion.div>
         </div>
 
-        {/* RIGHT — real product shot */}
-        <div className="lg:w-[48%] flex items-center justify-center lg:justify-end relative">
-
-          {/* Subtle gold ring behind pack */}
-          <div
-            aria-hidden
-            className="absolute w-[340px] h-[340px] md:w-[440px] md:h-[440px] rounded-full border border-[#D4A84B]/10"
-            style={{ background: 'radial-gradient(circle, rgba(212,168,75,0.04) 0%, transparent 70%)' }}
-          />
-          <div
-            aria-hidden
-            className="absolute w-[240px] h-[240px] md:w-[320px] md:h-[320px] rounded-full border border-[#C8181A]/15"
-          />
-
+        {/* RIGHT — merged full-bleed product shot */}
+        <div className="lg:w-[48%] w-full h-[280px] sm:h-[360px] lg:h-[500px] relative overflow-hidden rounded-2xl border border-white/5 bg-[#121212]">
           <motion.div
             style={{ y: packY, opacity: packOpacity }}
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="w-full h-full relative"
           >
             <Image
               src="/HERO.png"
-              alt="Bajrangi Dona Pack — 100 pcs, machine sealed"
-              width={400}
-              height={400}
+              alt="Bajrangi Paper Dona & Plates"
+              fill
               priority
-              className="object-contain drop-shadow-2xl"
-              style={{
-                filter: 'drop-shadow(0 30px 60px rgba(200,24,26,0.25)) drop-shadow(0 10px 25px rgba(0,0,0,0.5))',
-                width: 'auto',
-                height: 'auto',
-              }}
+              className="object-cover object-center"
             />
+            {/* Smooth Edge Fades to blend the image background into the night background */}
+            <div className="absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-[#0C0C0C] via-[#0C0C0C]/50 to-transparent pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-[#0C0C0C] via-[#0C0C0C]/50 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-8 sm:h-16 bg-gradient-to-b from-[#0C0C0C] via-[#0C0C0C]/50 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-8 sm:h-16 bg-gradient-to-t from-[#0C0C0C] via-[#0C0C0C]/50 to-transparent pointer-events-none" />
+          </motion.div>
 
-            {/* Count stamp — overlaid on the pack */}
-            <motion.div
-              className="absolute -bottom-3 -right-3 md:-bottom-4 md:-right-4 bg-[#C8181A] px-4 py-2.5"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              <p className="font-mono-space font-bold text-white text-lg md:text-2xl leading-none">100</p>
-              <p className="font-mono-space text-white/90 text-[9px] tracking-[2px] uppercase">pcs inside</p>
-            </motion.div>
+          {/* Count stamp — overlaid on the pack */}
+          <motion.div
+            className="absolute bottom-4 right-4 bg-[#C8181A] px-4 py-2.5 z-20"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          >
+            <p className="font-mono-space font-bold text-white text-lg md:text-2xl leading-none">100</p>
+            <p className="font-mono-space text-white/90 text-[9px] tracking-[2px] uppercase">pcs inside</p>
+          </motion.div>
 
-            {/* Seal badge */}
-            <motion.div
-              className="absolute -top-2 -left-2 md:-top-3 md:-left-3 border border-[#D4A84B]/40 bg-[#1a0a02] px-3 py-1.5"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.85 }}
-            >
-              <p className="font-mono-space text-[#D4A84B] text-[9px] tracking-[2px] uppercase">Machine Sealed</p>
-            </motion.div>
+          {/* Seal badge */}
+          <motion.div
+            className="absolute top-4 left-4 border border-[#D4A84B]/40 bg-[#1a0a02] px-3 py-1.5 z-20"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.85 }}
+          >
+            <p className="font-mono-space text-[#D4A84B] text-[9px] tracking-[2px] uppercase">Machine Sealed</p>
           </motion.div>
         </div>
       </div>
