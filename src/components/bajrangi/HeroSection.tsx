@@ -61,10 +61,10 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
       </div>
 
       {/* ── Main body ── */}
-      <div className="flex-1 relative z-10 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 pt-16 pb-4">
+      <div className="flex-1 relative z-10 px-6 md:px-12 lg:px-20 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 pt-16 pb-4">
 
         {/* LEFT — copy */}
-        <div className="lg:w-[52%] flex flex-col justify-center">
+        <div className="lg:w-[42%] flex flex-col justify-center">
 
           {/* Brand name */}
           <motion.h1
@@ -147,7 +147,7 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
         </div>
 
         {/* RIGHT — merged full-bleed product shot */}
-        <div className="lg:w-[48%] w-full h-[280px] sm:h-[360px] lg:h-[500px] relative overflow-hidden rounded-2xl border border-white/5 bg-[#121212]">
+        <div className="lg:w-[58%] w-full h-[340px] sm:h-[440px] lg:h-[580px] relative overflow-hidden">
           <motion.div
             style={{ y: packY, opacity: packOpacity }}
             initial={{ opacity: 0, scale: 0.95 }}
