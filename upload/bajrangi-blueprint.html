@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bajrangi — Website Blueprint v2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=DM+Sans:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap');
+:root{--red:#C8181A;--gold:#D4A84B;--night:#0C0C0C;--cream:#FAF3E0;--ink:#1A0800;--mid:#6B5B4E}
+*{margin:0;padding:0;box-sizing:border-box}ul{list-style:none}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);font-size:15px;line-height:1.7}
+.cover{background:var(--night);min-height:100vh;display:flex;flex-direction:column}
+.cover-bar{background:var(--red);padding:10px 48px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.75);text-transform:uppercase}
+.cover-body{flex:1;padding:72px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.cover-body::before{content:'बजरंगी';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Baloo 2',cursive;font-size:320px;font-weight:800;color:rgba(200,24,26,.06);pointer-events:none;line-height:1}
+.cover-eye{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:24px}
+.cover-h1{font-family:'Baloo 2',cursive;font-size:clamp(72px,12vw,140px);font-weight:800;color:var(--red);line-height:.9;margin-bottom:10px}
+.cover-h2{font-family:'Baloo 2',cursive;font-size:clamp(24px,4vw,48px);font-weight:600;color:var(--gold);margin-bottom:36px}
+.cover-desc{font-size:14px;color:rgba(255,255,255,.4);max-width:560px;line-height:1.9}
+.cover-desc strong{color:rgba(255,255,255,.7);font-weight:500}
+.cover-foot{padding:28px 48px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.cover-co{font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,.25);letter-spacing:1px}
+.doc-sec{padding:64px 48px;border-bottom:1px solid rgba(200,24,26,.08)}
+.doc-sec.dk{background:var(--night);color:white}
+.doc-sec.rd{background:var(--red);color:white}
+.doc-sec.alt{background:#FFF8F0}
+.sec-eye{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sec-n{font-family:'Space Mono',monospace;font-size:10px;color:var(--red);letter-spacing:2px}
+.dk .sec-n,.rd .sec-n{color:var(--gold)}
+.tag{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:3px 10px;background:var(--red);color:white}
+.tag.g{background:var(--gold);color:var(--night)}
+.tag.d{background:var(--night);color:var(--gold);border:1px solid var(--gold)}
+.tag.w{background:white;color:var(--red)}
+.doc-h{font-family:'Baloo 2',cursive;font-size:clamp(26px,4vw,52px);font-weight:800;line-height:1.1;margin-bottom:8px;color:var(--ink)}
+.dk .doc-h,.rd .doc-h{color:white}
+.doc-sub{font-family:'Baloo 2',cursive;font-size:16px;color:var(--gold);margin-bottom:40px;font-weight:600}
+.rd .doc-sub{color:rgba(255,255,255,.7)}
+.dk .doc-sub{color:rgba(255,255,255,.45)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.card{background:white;border-left:3px solid var(--red);padding:20px 24px;margin-bottom:16px;position:relative}
+.card.gb{border-left-color:var(--gold)}
+.card.dk{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:3px solid var(--gold)}
+.card.critical{border-left:4px solid #ff0000;background:#fff5f5}
+.clabel{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.ctitle{font-family:'Baloo 2',cursive;font-size:20px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.dk .ctitle{color:white}
+.cbody{font-size:14px;color:var(--mid);line-height:1.8}
+.dk .cbody{color:rgba(255,255,255,.55)}
+.cp{background:var(--night);padding:24px 28px;margin-bottom:16px;border-left:4px solid var(--red);position:relative}
+.cp.gb{border-left-color:var(--gold)}
+.cp.wh{border-left-color:white}
+.cp-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.cp-main{font-family:'Baloo 2',cursive;font-size:clamp(20px,2.5vw,32px);color:white;line-height:1.5;font-weight:700;margin-bottom:6px}
+.cp-main.xl{font-size:clamp(28px,4vw,52px)}
+.cp-main.body{font-size:16px;font-weight:400;font-style:italic;font-family:'DM Sans',sans-serif}
+.cp-note{font-size:11px;color:rgba(255,255,255,.3);font-family:'Space Mono',monospace;letter-spacing:.5px;line-height:1.7;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}
+.imp-tag{position:absolute;top:12px;right:12px;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px}
+.imp-tag.h{background:var(--red);color:white}
+.code{background:#111;color:#E0D5C5;font-family:'Space Mono',monospace;font-size:11px;padding:24px;margin:16px 0;line-height:1.9;border-left:3px solid var(--gold);overflow-x:auto;white-space:pre-wrap}
+.code .c{color:rgba(212,168,75,.4)}.code .r{color:#ff7070}.code .g{color:#69db7c}.code .y{color:var(--gold)}
+.alert{background:#1a0000;border:2px solid var(--red);padding:20px 24px;margin-bottom:16px}
+.alert.warn{border-color:var(--gold)}
+.alert-h{font-family:'Baloo 2',cursive;font-size:17px;color:var(--red);font-weight:800;margin-bottom:8px}
+.alert.warn .alert-h{color:var(--gold)}
+.alert-b{font-size:13px;color:rgba(255,255,255,.6);line-height:1.8}
+.preview{border:2px solid rgba(200,24,26,.2);background:var(--night);padding:28px;margin:16px 0;font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,.4);line-height:2}
+.preview .hl{color:var(--gold)}.preview .rd{color:var(--red)}.preview .wh{color:white;font-weight:700}
+.cl li{padding:6px 0 6px 20px;position:relative;font-size:14px;color:var(--mid);border-bottom:1px solid rgba(200,24,26,.06)}
+.cl li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700}
+.xl li::before{content:'✗';color:#888}
+.dk-list li{color:rgba(255,255,255,.55);border-bottom-color:rgba(255,255,255,.05)}
+.cmp{display:grid;grid-template-columns:1fr 1fr}
+.cmp-bad{background:rgba(255,255,255,.03);padding:20px;border:1px solid rgba(255,255,255,.06)}
+.cmp-good{background:var(--red);padding:20px}
+.cmp-lbl{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;color:rgba(255,255,255,.4)}
+.cmp-good .cmp-lbl{color:rgba(255,255,255,.7)}
+.cmp-item{font-size:13px;color:rgba(255,255,255,.45);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;gap:8px}
+.cmp-good .cmp-item{color:white;border-bottom-color:rgba(255,255,255,.12)}
+.occ{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:16px 0}
+.occ-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:12px 6px;text-align:center}
+.occ-icon{font-size:20px;display:block;margin-bottom:6px}
+.occ-name{font-family:'Baloo 2',cursive;font-size:12px;color:white;font-weight:700;display:block}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:24px}
+.tbl th{background:var(--night);color:var(--gold);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:10px 14px;text-align:left}
+.tbl td{padding:12px 14px;border-bottom:1px solid rgba(200,24,26,.08);vertical-align:top;line-height:1.6}
+.tbl tr:nth-child(even) td{background:rgba(200,24,26,.02)}
+.div{display:flex;align-items:center;gap:16px;margin:40px 0}
+.div-line{flex:1;height:1px;background:rgba(200,24,26,.1)}
+.div-txt{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+.wa{background:#075E54;color:white;padding:20px 24px;border-radius:0 12px 12px 12px;max-width:440px;font-size:13px;line-height:1.8;margin:12px 0}
+.wa::before{content:'WhatsApp Template';display:block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:12px;text-transform:uppercase}
+.chk-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(200,24,26,.06)}
+.chk-box{width:20px;height:20px;border:2px solid var(--red);flex-shrink:0;margin-top:2px}
+.chk-txt{font-size:14px;color:var(--mid);line-height:1.6}
+.chk-txt strong{color:var(--ink)}
+.doc-foot{background:var(--night);padding:48px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px}
+.df-brand{font-family:'Baloo 2',cursive;font-size:40px;font-weight:800;color:var(--red)}
+.df-tag{font-family:'Baloo 2',cursive;font-size:16px;color:var(--gold);margin-top:4px}
+.df-meta{font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,.2);text-align:right;line-height:2}
+@media(max-width:768px){.doc-sec,.cover-body,.cover-foot,.doc-foot{padding:40px 24px}.cover-bar{padding:10px 24px}.g2,.g3,.cmp,.occ{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-bar">BAJRANGI — WEBSITE BLUEPRINT v2 · FINAL · ESHANURA ENTERPRISES PVT LTD</div>
+  <div class="cover-body">
+    <div class="cover-eye">Complete Website Blueprint — Revised · Ad Film Ready</div>
+    <div class="cover-h1">बजरंगी</div>
+    <div class="cover-h2">मतलब भरोसा...</div>
+    <div class="cover-desc">
+      <strong>What changed in v2:</strong> Pricing removed from all sections. Occasions section made compact — no attack line. Attack lines 2, 4, 5 removed — only 1, 3, 6 remain. Margin math section removed. Story section removed. Eshanura credentials removed from all sections — footer only. Brand personality sharpened: direct, witty, no emotional softness. Built for an ad film mindset — every line must land hard or not be there.
+    </div>
+  </div>
+  <div class="cover-foot">
+    <div class="cover-co">bajrangi.eshanura.com · 9839436346 · care@bajrangi.eshanura.com</div>
+  </div>
+</div>
+
+<!-- 01 DELETE FIRST -->
+<div class="doc-sec dk">
+  <div class="sec-eye"><span class="sec-n">01</span><span class="tag w">DELETE FIRST</span></div>
+  <div class="doc-h">Delete These. Right Now. Before Anything Else.</div>
+  <div class="doc-sub">These are on the live site and actively destroying the brand.</div>
+
+  <div class="alert">
+    <div class="alert-h">🔴 All Six Fake Testimonials — Delete Entirely</div>
+    <div class="alert-b">Ramesh Kumar, Sunita Devi, Amit Verma, Priya Singh, Vikram Patel, Deepak Sharma. All invented. All with fake "Verified Purchase" badges. Delete the entire section. Zero testimonials is better than six fake ones. When real stockists say real things — add them.</div>
+  </div>
+
+  <div class="alert">
+    <div class="alert-h">🔴 Fake Store Locator — Delete Entirely</div>
+    <div class="alert-b">Shri Ganesh Kirana, Ramesh Halwai, Puja Samagri Centre, Singh Caterers, Devi Provision Store, Mahalaxmi Traders — all invented with fake phone numbers. Delete entirely. Keep only the three real stockists in Find Us section.</div>
+  </div>
+
+  <div class="alert">
+    <div class="alert-h">🔴 Hero Counter Showing Zero — Fix Immediately</div>
+    <div class="alert-b">Remove the JavaScript animation. Hardcode static text: "100". No animation. Static. A hardcoded 100 is infinitely better than an animated 0.</div>
+  </div>
+
+  <div class="alert">
+    <div class="alert-h">🔴 Stats Section All Zeros — Delete</div>
+    <div class="alert-b">"0+ Pieces · 0 Variants · 0+ Stockists · 0 Cities" — broken and never needed. Delete permanently.</div>
+  </div>
+
+  <div class="alert warn">
+    <div class="alert-h">🟡 Newsletter Signup — Delete</div>
+    <div class="alert-b">Never in the brief. Irrelevant for this audience. Gone.</div>
+  </div>
+
+  <div class="alert warn">
+    <div class="alert-h">🟡 Credential Badges From Every Section — Remove</div>
+    <div class="alert-b">Pvt. Ltd. · Startup India · MSME · GST — these go in the FOOTER ONLY. Remove from hero credential strip, story section, and anywhere else they appear. They are company facts, not trophies to display throughout the site.</div>
+  </div>
+</div>
+
+<!-- 02 BRAND IDENTITY -->
+<div class="doc-sec">
+  <div class="sec-eye"><span class="sec-n">02</span><span class="tag">Brand Identity</span></div>
+  <div class="doc-h">Visual Identity — From The Labels</div>
+  <div class="doc-sub">The website and the labels must feel like the same brand.</div>
+
+  <div class="g2">
+    <div>
+      <div class="card">
+        <div class="clabel">Logo — Always Together</div>
+        <div class="cbody">
+          <strong>Bansuri + Mor Pankh above "बजरंगी ™"</strong> — these are never separated. Goes in navbar, hero right panel, footer.<br><br>
+          Wordmark: Baloo 2 ExtraBold 800, color #C8181A<br>
+          Below it: ™ superscript, small<br>
+          No credential badges here. Just the logo.
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <div class="clabel">The Shield Badge — Hero Right Panel</div>
+        <div style="background:var(--night);padding:16px;margin-top:8px;border-left:3px solid var(--gold);">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--gold);margin-bottom:4px;">★ ★ ★</div>
+          <div style="font-family:'Baloo 2',cursive;font-size:13px;color:var(--gold);font-weight:700;">सिर्फ बजरंगी में</div>
+          <div style="font-family:'Baloo 2',cursive;font-size:20px;color:white;font-weight:800;line-height:1.3;margin:4px 0;">टेम्पर-प्रूफ<br>नेक सीलिंग</div>
+          <div style="font-family:'Baloo 2',cursive;font-size:14px;color:var(--gold);">"खुलेगा नहीं, टिकेगा सही!"</div>
+        </div>
+        <div class="cbody" style="margin-top:8px;font-size:12px;">Gold border shield shape. Dark red bg. Floating animation ±8px, 4s loop.</div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="clabel">Colors — Exact Values</div>
+        <div class="code" style="margin:0;padding:16px;">--red:   #C8181A   /* Logo Red — primary */
+--gold:  #D4A84B   /* Accent */
+--night: #0C0C0C   /* Hero, footer bg */
+--cream: #FAF3E0   /* Body background */
+--ink:   #1A0800   /* Body text */
+
+Ratios:
+55% cream  → body sections
+25% night  → hero + footer + proof
+12% red    → CTAs, active elements
+ 8% gold   → prices, accents</div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <div class="clabel">Typography</div>
+        <div class="code" style="margin:0;padding:16px;">Baloo 2, weight 800
+→ All Hindi, all headlines,
+  brand name, CTAs, taglines
+
+Space Mono, weight 700
+→ Numbers, sizes, badges,
+  eyebrows, small labels
+
+DM Sans, weight 400
+→ Body text, English prose,
+  card descriptions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g3" style="margin-top:24px;">
+    <div class="cp">
+      <div class="cp-label">Key Visual 1</div>
+      <div class="cp-main">100 माने पूरे 100</div>
+      <div style="font-family:'Baloo 2',cursive;font-size:20px;color:var(--red);margin-top:4px;">— गिन के देखो!</div>
+      <div class="cp-note">Hero right panel, below shield badge. Space Mono for 100. Baloo 2 for the rest.</div>
+    </div>
+    <div class="cp gb">
+      <div class="cp-label">Key Visual 2</div>
+      <div class="cp-main">पूरा माल।<br>पक्का भरोसा।<br>हर बार।</div>
+      <div class="cp-note">Footer strip. Gold text on dark red. Baloo 2, 22px.</div>
+    </div>
+    <div class="cp wh">
+      <div class="cp-label">Key Visual 3 — Sticker</div>
+      <div class="cp-main">खोलिए।<br>गिनिए।<br>भरोसा कीजिए।</div>
+      <div class="cp-note">Dashed gold border box — shown as a visual element in hero or attack section.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 BRAND VOICE -->
+<div class="doc-sec dk">
+  <div class="sec-eye"><span class="sec-n">03</span><span class="tag g">Voice</span></div>
+  <div class="doc-h">Brand Voice</div>
+  <div class="doc-sub">Direct. Witty. Bharosemand. No emotional softness.</div>
+
+  <div class="g2">
+    <div>
+      <div class="card dk">
+        <div class="clabel">The Personality</div>
+        <div class="cbody">
+          <span style="font-family:'Baloo 2',cursive;font-size:22px;color:white;font-weight:800;">Direct. Witty. Bharosemand.</span><br><br>
+          Not corporate. Not humble. Not emotional. The confidence of a person who knows their product is better and says so — without apology, without explaining themselves, without asking for approval.<br><br>
+          Every line should sound like it could be the last line of a 30-second ad film. That's the test.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card dk">
+        <div class="clabel">Use These Words</div>
+        <ul class="cl dk-list" style="padding-left:0;">
+          <li>भरोसा — not "trust" or "reliability"</li>
+          <li>मतलब — the brand owns this word</li>
+          <li>गिन के देखो — the challenge, everywhere</li>
+          <li>पूरा माल, पक्का भरोसा — the promise</li>
+          <li>पंगत — real word for a feast row</li>
+          <li>भंडारा / शादी / प्रसाद — real occasion names</li>
+          <li>ठेला / ढाबा / हलवाई — real buyer names</li>
+          <li>सिर्फ बजरंगी में — exclusivity claim</li>
+        </ul>
+      </div>
+      <div class="card dk" style="margin-top:16px;">
+        <div class="clabel">Never Say</div>
+        <ul class="cl xl dk-list" style="padding-left:0;">
+          <li>"Premium quality" without proof</li>
+          <li>"Industry leading" anything</li>
+          <li>"We are delighted to offer"</li>
+          <li>Emotional / sentimental language</li>
+          <li>Any corporate English jargon</li>
+          <li>Any stat you cannot verify face-to-face</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 ARCHITECTURE -->
+<div class="doc-sec">
+  <div class="sec-eye"><span class="sec-n">04</span><span class="tag">Architecture</span></div>
+  <div class="doc-h">Site Architecture</div>
+  <div class="doc-sub">One page. Seven sections. One purpose.</div>
+
+  <div class="code">SITE: bajrangi.eshanura.com
+TYPE: Single-page — scroll only
+
+PERSISTENT:
+  ↑ Announcement Bar    → Red, no close button
+  ↑ Sticky Navbar       → Logo + Nav + WA button
+  ↓ Footer              → Brand + contacts + credentials
+  ↗ Floating WA Button  → Always visible, bottom-right
+
+SECTIONS IN ORDER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  1. HERO         → Brand tagline + Shield + 100 hardcoded
+  2. THE PROOF    → Three physical proofs + comparison
+  3. PRODUCTS     → All 8 dona/plates, no prices shown
+  4. OCCASIONS    → Six icons, compact, clean
+  5. THE ATTACK   → Three witty lines — sharp, no softness
+  6. RETAILER     → Stockist pitch + simple form
+  7. FIND US      → Three real stockists + direct WA order
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DO NOT BUILD:
+  ✗ Testimonials     ✗ Story/About section
+  ✗ Fake stockists   ✗ Newsletter signup
+  ✗ Stats section    ✗ Shopping cart
+  ✗ Margin math      ✗ Price display anywhere
+  ✗ Credential badges outside footer</div>
+</div>
+
+<!-- 05 HERO -->
+<div class="doc-sec rd">
+  <div class="sec-eye"><span class="sec-n">05</span><span class="tag d">Section 1</span></div>
+  <div class="doc-h">Hero Section</div>
+  <div class="doc-sub">Five seconds to make them stay. No warm-up. Start hard.</div>
+
+  <div class="preview">
+<span class="hl">━━━ ANNOUNCEMENT BAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+BG: <span class="rd">#C8181A</span>  |  Font: Space Mono 10px  |  Letter-spacing: 3px
+"📦 Apne area mein pehle Bajrangi stockist bano — limited availability"
+<span class="hl">No close button. Always visible.</span>
+
+<span class="hl">━━━ NAVBAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+BG: white 95%, backdrop-blur, sticky, height 68px
+LEFT:  [Bansuri + Mor Pankh] + "बजरंगी ™" (Baloo 2, red, 22px)
+RIGHT: [WhatsApp pe Order Karein] → Red button → wa.me/919839436346
+
+<span class="hl">━━━ HERO (full viewport, BG: #0C0C0C) ━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+
+LEFT PANEL (55%):                      RIGHT PANEL (45%):
+
+Eyebrow — Space Mono, gold:            [SHIELD BADGE — floating ±8px, 4s]
+"PAPER DONA & PLATE · LAKHIMPUR"       ┌───────────────────────┐
+                                        │       ★ ★ ★            │
+LINE 1 — Baloo 2, 800, 76px, white:    │  सिर्फ बजरंगी में    │
+<span class="wh">"बजरंगी।"</span>                            │  टेम्पर-प्रूफ        │
+                                        │  नेक सीलिंग           │
+LINE 2 — Baloo 2, 800, 48px, #C8181A:  │ "खुलेगा नहीं,        │
+<span class="rd">"मतलब भरोसा।"</span>                        │  टिकेगा सही!"        │
+<span class="hl">↑ THE BRAND TAGLINE. MUST BE HERE.</span>   └───────────────────────┘
+
+LINE 3 — Baloo 2, 600, 32px, gold:     Below badge — THE NUMBER:
+"मतलब 100 माने पूरे 100।"             <span class="wh" style="font-size:28px;">100</span>
+                                        Space Mono, 120px, white
+BRAND LINE — DM Sans italic, 18px:      <span class="hl">HARDCODED STATIC — NOT ANIMATED</span>
+"Jo likha hai — woh hi milega।"
+                                        Below (Baloo 2, 28px, red):
+SUB — DM Sans, 16px, white 55%:         "माने पूरे 100 — गिन के देखो!"
+"Paper dona & plate. Sahi maal.
+Guaranteed count. Machine-sealed."      3 pills floating:
+                                        [Machine Sealed ✓]    → red
+TWO CTAs:                               [Count Slip Inside ✓] → red
+[Products Dekhein →]  RED FILLED        [Tamper Evident ✓]   → gold
+[Stockist Bano ↗]     GOLD BORDER
+
+<span class="hl">━━━ TICKER (2 rows below hero) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+ROW 1 (Red bg, scrolls LEFT, Baloo 2 white):
+"बजरंगी · मतलब भरोसा · चटनी डोना · बताशा डोना · समोसा डोना ·
+ कटोरा डोना · बड़ा कटोरा · Color & Silver · सिर्फ बजरंगी में ·"
+
+ROW 2 (Gold bg, scrolls RIGHT, Space Mono dark):
+"100 माने पूरे 100 · गिन के देखो · 4" · 5.5" · 6" · 7" · 8" ·
+ पूरा माल · पक्का भरोसा · हर बार · Jo likha hai —"</div>
+</div>
+
+<!-- 06 PROOF -->
+<div class="doc-sec">
+  <div class="sec-eye"><span class="sec-n">06</span><span class="tag">Section 2</span></div>
+  <div class="doc-h">The Proof Section</div>
+  <div class="doc-sub">"Teen sach — jo aap khud jaanch sakte hain."</div>
+
+  <p style="font-size:13px;color:var(--mid);margin-bottom:24px;">Background: #0C0C0C. The hero promises. This section proves it with three verifiable facts.</p>
+
+  <div class="g3">
+    <div class="cp">
+      <div class="cp-label">Card 1 — Exact Copy</div>
+      <div class="cp-main" style="font-size:22px;">हाथ से गिना हुआ</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:10px;line-height:1.8;">"Har packet mein har piece haath se gini jaati hai. Koi shortcut nahi. Jo packet band hoti hai — woh already gin chuki hoti hai."</div>
+      <div class="cp-note">Icon: hands / counting (Tabler: ti-hand-finger)</div>
+    </div>
+    <div class="cp gb">
+      <div class="cp-label">Card 2 — Exact Copy</div>
+      <div class="cp-main" style="font-size:22px;">Andar Count Slip</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:10px;line-height:1.8;">"Har packet ke andar ek slip hoti hai. Slip par wahi number jo bahar likha hai. Kholo. Gino. Fark pata chale toh seedha call karo: 9839436346."</div>
+      <div class="cp-note">Icon: paper slip (Tabler: ti-file-text)</div>
+    </div>
+    <div class="cp wh">
+      <div class="cp-label">Card 3 — Exact Copy</div>
+      <div class="cp-main" style="font-size:22px;">Machine Seal</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:10px;line-height:1.8;">"Packet machine se seal hoti hai. Ek baar seal toot gayi — wapas waisi nahi hoti. Seal intact hai toh kisine haath nahi lagaya."</div>
+      <div class="cp-note">Icon: lock / seal (Tabler: ti-lock)</div>
+    </div>
+  </div>
+
+  <div class="cp gb" style="text-align:center;margin-top:8px;">
+    <div class="cp-label">Challenge Line — Centered Below Cards</div>
+    <div class="cp-main">"Bajrangi ka packet uthao. Count karo.<br>Agar ek bhi piece kam nikli —<br>seedha call karo: <span style="color:var(--gold);">9839436346</span>"</div>
+    <div class="cp-note">Baloo 2, 22px. Phone number = WhatsApp link. This is a dare. The brand's most powerful statement.</div>
+  </div>
+
+  <div class="div"><div class="div-line"></div><div class="div-txt">Comparison</div><div class="div-line"></div></div>
+
+  <div class="cmp">
+    <div class="cmp-bad">
+      <div class="cmp-lbl">Local Wala / Unbranded</div>
+      <div class="cmp-item"><span style="color:#555">✗</span> Koi company nahi — aaj hain, kal nahi</div>
+      <div class="cmp-item"><span style="color:#555">✗</span> 92-95 piece milte hain 100 ke packet mein</div>
+      <div class="cmp-item"><span style="color:#555">✗</span> Haath se bandha polythene — koi seal nahi</div>
+      <div class="cmp-item"><span style="color:#555">✗</span> Complaint ka koi raasta nahi</div>
+      <div class="cmp-item"><span style="color:#555">✗</span> GST invoice nahi milegi</div>
+    </div>
+    <div class="cmp-good">
+      <div class="cmp-lbl">बजरंगी — मतलब भरोसा</div>
+      <div class="cmp-item"><span style="color:var(--gold)">✓</span> Registered company — naam ke saath zimmedari</div>
+      <div class="cmp-item"><span style="color:var(--gold)">✓</span> 100 maane poore 100 — count slip inside</div>
+      <div class="cmp-item"><span style="color:var(--gold)">✓</span> Machine seal — tamper-evident — verifiable</div>
+      <div class="cmp-item"><span style="color:var(--gold)">✓</span> Seedha founder se WhatsApp: 9839436346</div>
+      <div class="cmp-item"><span style="color:var(--gold)">✓</span> GST invoice milegi</div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 PRODUCTS -->
+<div class="doc-sec alt">
+  <div class="sec-eye"><span class="sec-n">07</span><span class="tag">Section 3</span></div>
+  <div class="doc-h">Products Section</div>
+  <div class="doc-sub">Dona। Plate। Color। Silver। No prices shown anywhere on the website.</div>
+
+  <div class="card gb">
+    <div class="clabel">Important — No Pricing On Website</div>
+    <div class="cbody">
+      Prices are NOT shown on the website. Reason: prices change, website doesn't update as fast, and price negotiation happens on WhatsApp anyway. Every product card shows the product name, size, variant, use-case, and the WhatsApp order button. That's it.<br><br>
+      The inquiry goes to WhatsApp where pricing is shared directly.
+    </div>
+  </div>
+
+  <table class="tbl" style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Size</th>
+        <th>Variants</th>
+        <th>Pack</th>
+        <th>Best For</th>
+        <th>Who Buys</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>चटनी डोना</strong><br><small style="color:var(--mid);">Chutney Dona</small></td>
+        <td>4"</td>
+        <td>Color · Silver</td>
+        <td>100 pcs</td>
+        <td>Chutney, pickle, small portions</td>
+        <td>Chaat shops, halwai, paan</td>
+      </tr>
+      <tr>
+        <td><strong>बताशा डोना</strong><br><small style="color:var(--mid);">Batasha Dona</small></td>
+        <td>5.5"</td>
+        <td>Color · Silver</td>
+        <td>100 pcs</td>
+        <td>Batasha, mithai, prasad, puja</td>
+        <td>Halwai, puja shops</td>
+      </tr>
+      <tr>
+        <td><strong>समोसा डोना</strong><br><small style="color:var(--mid);">Samosa Dona</small></td>
+        <td>6"</td>
+        <td>Color · Silver</td>
+        <td>100 pcs</td>
+        <td>Samosa, kachori, snacks</td>
+        <td>Street food, caterers</td>
+      </tr>
+      <tr>
+        <td><strong>समोसा प्लेट</strong><br><small style="color:var(--mid);">Samosa Plate</small></td>
+        <td>6"</td>
+        <td>Silver</td>
+        <td>50 pcs</td>
+        <td>Flat serving, events</td>
+        <td>Caterers, puja use</td>
+      </tr>
+      <tr>
+        <td><strong>कटोरा डोना</strong><br><small style="color:var(--mid);">Katora Dona</small></td>
+        <td>7"</td>
+        <td>Color · Silver</td>
+        <td>50 pcs</td>
+        <td>Dal, sabzi, curry</td>
+        <td>Caterers, dhaba, bhoj</td>
+      </tr>
+      <tr>
+        <td><strong>कटोरा प्लेट</strong><br><small style="color:var(--mid);">Katora Plate</small></td>
+        <td>7"</td>
+        <td>Silver</td>
+        <td>50 pcs</td>
+        <td>Full serving, events</td>
+        <td>Event caterers</td>
+      </tr>
+      <tr>
+        <td><strong>बड़ा कटोरा</strong><br><small style="color:var(--mid);">Bada Katora</small></td>
+        <td>8"</td>
+        <td>Color · Silver</td>
+        <td>50 pcs</td>
+        <td>Langar, bhandara, full meal</td>
+        <td>Temples, bulk buyers</td>
+      </tr>
+      <tr>
+        <td><strong>बड़ी प्लेट</strong><br><small style="color:var(--mid);">Bada Plate</small></td>
+        <td>8"</td>
+        <td>Silver</td>
+        <td>50 pcs</td>
+        <td>Wedding bhoj, temple events</td>
+        <td>Wedding caterers</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card">
+    <div class="clabel">On Every Product Card — Non-Negotiable</div>
+    <div class="cbody">
+      Color/Silver toggle at section top — one click switches all cards.<br><br>
+      Three USP micro-badges on every card, below product name:<br>
+      <span style="background:var(--red);color:white;padding:3px 8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;margin-right:6px;">✓ Guaranteed Count</span>
+      <span style="background:var(--night);color:var(--gold);padding:3px 8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;margin-right:6px;border:1px solid var(--gold);">✓ Count Slip Inside</span>
+      <span style="background:var(--night);color:white;padding:3px 8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;">Machine Sealed</span><br><br>
+      CTA button: "WhatsApp pe Order Karo" → pre-filled WA message per product. No price in card. No price in message template either — just product name, size, variant, quantity.
+    </div>
+  </div>
+</div>
+
+<!-- 08 OCCASIONS -->
+<div class="doc-sec dk">
+  <div class="sec-eye"><span class="sec-n">08</span><span class="tag g">Section 4</span></div>
+  <div class="doc-h">Occasions — "हर अवसर के लिए"</div>
+  <div class="doc-sub">Six icons. One headline. Clean and compact. No attack copy here.</div>
+
+  <div class="cp" style="margin-bottom:24px;">
+    <div class="cp-label">Section Headline — Only This</div>
+    <div class="cp-main">हर अवसर के लिए उपयुक्त</div>
+    <div class="cp-note">Baloo 2, 42px, white. That's the only copy in this section. No sub-headline. No attack line. Let the six icons speak.</div>
+  </div>
+
+  <div class="occ">
+    <div class="occ-item">
+      <span class="occ-icon">🏛️</span>
+      <span class="occ-name">शादी समारोह</span>
+    </div>
+    <div class="occ-item">
+      <span class="occ-icon">🎉</span>
+      <span class="occ-name">पार्टी एवं इवेंट</span>
+    </div>
+    <div class="occ-item">
+      <span class="occ-icon">🪔</span>
+      <span class="occ-name">प्रसाद एवं पूजा</span>
+    </div>
+    <div class="occ-item">
+      <span class="occ-icon">🍛</span>
+      <span class="occ-name">भंडारा एवं भोज</span>
+    </div>
+    <div class="occ-item">
+      <span class="occ-icon">☕</span>
+      <span class="occ-name">चाय नाश्ता</span>
+    </div>
+    <div class="occ-item">
+      <span class="occ-icon">🛺</span>
+      <span class="occ-name">ठेला, ढाबा</span>
+    </div>
+  </div>
+
+  <div class="card dk" style="margin-top:8px;">
+    <div class="clabel">Design Note</div>
+    <div class="cbody">Icons centered. Icon names in Baloo 2, 13px white. No English subtitles. No descriptions. No bottom copy. Section ends with the six icons. Move on.</div>
+  </div>
+</div>
+
+<!-- 09 ATTACK -->
+<div class="doc-sec rd">
+  <div class="sec-eye"><span class="sec-n">09</span><span class="tag d">Section 5</span></div>
+  <div class="doc-h">The Attack Section</div>
+  <div class="doc-sub">Three lines. Each one a gut-punch. Nothing soft.</div>
+
+  <p style="font-size:14px;color:rgba(255,255,255,.7);margin-bottom:32px;max-width:600px;">Attack lines 2 (moral), 4 (reputation), 5 (iman) have been removed as instructed. Three remain: the campaign line, the math line, and the Awadhi line. These three together are enough. Lean is better than crowded.</p>
+
+  <div class="g3">
+    <div class="cp wh">
+      <div class="imp-tag h">Line 1</div>
+      <div class="cp-label">The Campaign Line</div>
+      <div class="cp-main xl">50 माने 50।<br>गिन के देखो।</div>
+      <div class="cp-note">For 100 pcs packs: "100 माने पूरे 100। गिन के देखो।" Use whichever applies. Largest type in the section. This IS the brand.</div>
+    </div>
+    <div class="cp gb">
+      <div class="imp-tag h">Line 2</div>
+      <div class="cp-label">The Math Line</div>
+      <div class="cp-main">उनके 50 पीस में<br>44 मिलेंगे।<br>हमारे 50 में 50।<br><span style="color:var(--gold);">हिसाब आपका।</span></div>
+      <div class="cp-note">Pure arithmetic. No aggression. The customer draws their own conclusion. Three lines then one gold punchline.</div>
+    </div>
+    <div class="cp">
+      <div class="imp-tag h">Line 3</div>
+      <div class="cp-label">The Awadhi Line</div>
+      <div class="cp-main">पचास ठो माँगो,<br>पचास ठो मिलिहैं।<br><span style="color:var(--gold);">इहै बा बजरंगी।</span></div>
+      <div class="cp-note">Awadhi dialect for Lakhimpur-Sitapur-Hardoi belt. Their mother tongue. Lands differently than standard Hindi.</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(0,0,0,.3);padding:28px;margin-top:24px;border-left:4px solid var(--gold);">
+    <div style="font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:white;margin-bottom:16px;">Pack Sticker Visual — Show Here</div>
+    <div style="border:2px dashed var(--gold);padding:20px 28px;display:inline-block;">
+      <div style="font-family:'Baloo 2',cursive;font-size:26px;font-weight:800;color:white;line-height:1.4;">खोलिए। गिनिए।<br>भरोसा कीजिए।</div>
+    </div>
+    <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:12px;">Dashed gold border. Shows what's printed on the actual pack sticker. A dare printed on the packaging. No competitor will ever say this.</div>
+  </div>
+</div>
+
+<!-- 10 RETAILER -->
+<div class="doc-sec">
+  <div class="sec-eye"><span class="sec-n">10</span><span class="tag">Section 6</span></div>
+  <div class="doc-h">Retailer Section — "Stockist Bano"</div>
+  <div class="doc-sub">Direct pitch. No margin math. No emotional appeal. Just the ask.</div>
+
+  <div class="g2">
+    <div>
+      <div class="cp">
+        <div class="cp-label">Section Headline</div>
+        <div class="cp-main">अपने area में पहले<br>Bajrangi Stockist बनो।</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.55);margin-top:8px;">"Abhi limited areas mein available hai. Aapke area mein pehla stockist aap ho sakte hain."</div>
+        <div class="cp-note">Red background section. White text. Scarcity as opportunity.</div>
+      </div>
+
+      <div class="cp gb" style="margin-top:16px;">
+        <div class="cp-label">The Ground Pitch Quote</div>
+        <div class="cp-main" style="font-size:20px;">"Bhai sahab, unka 100 pcs wala packet kholo. Gino. <span style="color:var(--gold);">Fir hamara kholo. Gino.</span> Fark khud dikhega।"</div>
+        <div class="cp-note">Quote block format. This demonstration closes retailers. On the website it works as the human voice of the brand.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <div class="clabel">Four Benefits — No Margin Math</div>
+        <div class="cbody">
+          <strong>1. Seedha Company Se</strong><br>
+          Koi agent nahi. Seedha Eshanura Pvt. Ltd. se deal.<br><br>
+          <strong>2. GST Invoice</strong><br>
+          Har purchase par proper GST invoice. Koi local seller nahi deta.<br><br>
+          <strong>3. WhatsApp Ordering</strong><br>
+          Sirf ek message. Koi app nahi, koi portal nahi.<br><br>
+          <strong>4. Sell With Confidence</strong><br>
+          "Yeh Bajrangi hai. Count guaranteed. Gino." Customer wapas aayega.
+        </div>
+      </div>
+
+      <div class="card gb" style="margin-top:16px;">
+        <div class="clabel">Retailer Form — Five Fields Max</div>
+        <div class="cbody">
+          1. Naam<br>
+          2. WhatsApp number<br>
+          3. Shehar / Area<br>
+          4. Shop ka type<br>
+          5. Monthly zaroorat (approx cartons)<br><br>
+          Submit → WhatsApp pre-filled message<br><br>
+          Below button (DM Sans italic, muted):<br>
+          <em>"Hum personally sampark karenge. Koi automated bot nahi."</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11 FIND US -->
+<div class="doc-sec alt">
+  <div class="sec-eye"><span class="sec-n">11</span><span class="tag">Section 7</span></div>
+  <div class="doc-h">Find Us — Real Stockists Only</div>
+  <div class="doc-sub">Teen dukaan. Teeno sacchi. Teen hi dikhao.</div>
+
+  <div class="g3">
+    <div class="card"><div class="clabel">Stockist 1 — Real</div><div class="ctitle">Laxmi Kirana</div><div class="cbody">Rakehati, Nighasan<br>Kheri, Uttar Pradesh</div></div>
+    <div class="card"><div class="clabel">Stockist 2 — Real</div><div class="ctitle">Amit Kirana</div><div class="cbody">Belrayan<br>Kheri, Uttar Pradesh</div></div>
+    <div class="card"><div class="clabel">Stockist 3 — Real</div><div class="ctitle">SK Samosa</div><div class="cbody">DC Road<br>Lakhimpur-Kheri, UP</div></div>
+  </div>
+
+  <div style="background:var(--red);padding:32px;margin-top:16px;">
+    <div style="font-family:'Baloo 2',cursive;font-size:28px;font-weight:800;color:white;margin-bottom:8px;">"Apne area mein Bajrangi nahi mila?"</div>
+    <div style="font-size:16px;color:rgba(255,255,255,.8);margin-bottom:16px;">"Seedha order karo — half carton ya full carton."</div>
+    <div style="font-family:'Space Mono',monospace;font-size:32px;font-weight:700;color:var(--gold);">9839436346</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:12px;">GST invoice available. Minimum: half carton. WhatsApp pe message karo.</div>
+  </div>
+</div>
+
+<!-- 12 COMPLETE COPY -->
+<div class="doc-sec dk">
+  <div class="sec-eye"><span class="sec-n">12</span><span class="tag g">Master Copy</span></div>
+  <div class="doc-h">All Copy — Every Line. Final.</div>
+  <div class="doc-sub">Copy karo. Change mat karo. Exactly as written.</div>
+
+  <div class="g2">
+    <div>
+      <div class="cp"><div class="cp-label">Announcement Bar</div><div class="cp-main" style="font-size:16px;">"📦 Apne area mein pehle Bajrangi stockist bano — limited availability"</div><div class="cp-note">Red bg · White · Space Mono 10px · No close button</div></div>
+      <div class="cp" style="margin-top:8px;"><div class="cp-label">Hero Line 1</div><div class="cp-main xl">बजरंगी।</div><div class="cp-note">Baloo 2 · 800 · 76px · White</div></div>
+      <div class="cp" style="margin-top:8px;"><div class="cp-label">Hero Line 2 — THE TAGLINE</div><div class="cp-main xl" style="color:var(--red);">मतलब भरोसा।</div><div class="cp-note">Baloo 2 · 800 · 48px · #C8181A</div></div>
+      <div class="cp gb" style="margin-top:8px;"><div class="cp-label">Hero Line 3</div><div class="cp-main" style="font-size:28px;color:var(--gold);">मतलब 100 माने पूरे 100।</div><div class="cp-note">Baloo 2 · 600 · 32px · Gold</div></div>
+      <div class="cp" style="margin-top:8px;"><div class="cp-label">Brand Line — Everywhere</div><div class="cp-main" style="font-size:18px;font-style:italic;font-weight:400;font-family:'DM Sans',sans-serif;">"Jo likha hai — woh hi milega।"</div><div class="cp-note">DM Sans italic · 18px · White 60%</div></div>
+      <div class="cp wh" style="margin-top:8px;"><div class="cp-label">Hero Number — Static</div><div class="cp-main xl">100</div><div style="font-family:'Baloo 2',cursive;font-size:22px;color:var(--red);font-weight:700;margin-top:4px;">माने पूरे 100 — गिन के देखो!</div><div class="cp-note">Space Mono 120px White HARDCODED STATIC</div></div>
+      <div class="cp gb" style="margin-top:8px;"><div class="cp-label">Footer Strip</div><div class="cp-main">पूरा माल। पक्का भरोसा। हर बार।</div><div class="cp-note">Footer · Gold text on dark red · Baloo 2 22px</div></div>
+    </div>
+    <div>
+      <div class="cp"><div class="cp-label">Attack Line 1</div><div class="cp-main">50 माने 50।<br>गिन के देखो।</div><div class="cp-note">For 100 pcs: "100 माने पूरे 100। गिन के देखो।"</div></div>
+      <div class="cp gb" style="margin-top:8px;"><div class="cp-label">Attack Line 3</div><div class="cp-main" style="font-size:20px;">उनके 50 पीस में 44 मिलेंगे।<br>हमारे 50 में 50।<br>हिसाब आपका।</div></div>
+      <div class="cp wh" style="margin-top:8px;"><div class="cp-label">Attack Line 6 — Awadhi</div><div class="cp-main" style="font-size:20px;">पचास ठो माँगो,<br>पचास ठो मिलिहैं।<br>इहै बा बजरंगी।</div></div>
+      <div class="cp" style="margin-top:8px;"><div class="cp-label">Sticker Visual Copy</div><div class="cp-main">खोलिए। गिनिए।<br>भरोसा कीजिए।</div><div class="cp-note">Dashed gold border element. In attack section.</div></div>
+      <div class="cp gb" style="margin-top:8px;"><div class="cp-label">Occasions Headline</div><div class="cp-main" style="font-size:22px;">हर अवसर के लिए उपयुक्त</div><div class="cp-note">Only copy in that section. Nothing else.</div></div>
+      <div class="cp wh" style="margin-top:8px;"><div class="cp-label">Retailer Headline</div><div class="cp-main" style="font-size:20px;">अपने area में पहले Bajrangi Stockist बनो।</div></div>
+      <div class="cp" style="margin-top:8px;"><div class="cp-label">Challenge Line</div><div class="cp-main" style="font-size:18px;">"Bajrangi ka packet uthao. Count karo. Agar ek bhi piece kam nikli — seedha call karo: 9839436346"</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 13 WHATSAPP -->
+<div class="doc-sec">
+  <div class="sec-eye"><span class="sec-n">13</span><span class="tag">WhatsApp</span></div>
+  <div class="doc-h">WhatsApp Templates</div>
+  <div class="doc-sub">No prices in any template. Pricing on WhatsApp only.</div>
+
+  <div class="g2">
+    <div>
+      <div class="wa">
+🙏 Namaste Bajrangi!
+
+Mujhe chahiye:
+📦 Product: [Product Name]
+📐 Size: [4"/5.5"/6"/7"/8"]
+🎨 Variant: [Color / Silver]
+🔢 Pack: [100 / 50 pieces]
+🔢 Quantity: ___ packet
+
+Mera naam: ___
+City/Area: ___
+
+WhatsApp pe confirm karo.
+      </div>
+      <div class="wa" style="margin-top:16px;">
+🙏 Namaste Bajrangi!
+
+Stockist Inquiry:
+👤 Naam: ___
+📱 WhatsApp: ___
+📍 City/Area: ___
+🏪 Shop: Kirana/Caterer/Wholesale
+📦 Monthly zaroorat: ___ carton
+
+Stockist banna chahta hoon.
+      </div>
+    </div>
+    <div>
+      <div class="wa">
+🙏 Namaste Bajrangi!
+
+Bulk Order:
+📦 Product: ___
+🔢 Quantity: ___ pieces
+📍 Delivery location: ___
+📋 GST Invoice: Chahiye
+
+Best rate aur delivery
+details bataein.
+      </div>
+      <div class="wa" style="margin-top:16px;">
+🙏 Namaste Bajrangi!
+
+Main Bajrangi products ke
+baare mein jaanna chahta hoon.
+
+Mera area: ___
+
+Please details bataein.
+      </div>
+    </div>
+  </div>
+
+  <div class="card gb" style="margin-top:16px;">
+    <div class="clabel">Link Format + Floating Button</div>
+    <div class="code" style="margin:0;padding:16px;font-size:10px;">WA Link: https://wa.me/919839436346?text=[encodeURIComponent(msg)]
+Floating button: #25D366 (WA green), fixed bottom-right, always visible
+Pre-fill per product — no price in any pre-filled message</div>
+  </div>
+</div>
+
+<!-- 14 CHECKLIST -->
+<div class="doc-sec alt">
+  <div class="sec-eye"><span class="sec-n">14</span><span class="tag">Checklist</span></div>
+  <div class="doc-h">Pre-Launch Checklist</div>
+  <div class="doc-sub">Go through this before accepting any version. Pass/fail. No partial credit.</div>
+
+  <div class="g2">
+    <div>
+      <div class="clabel" style="margin-bottom:12px;">Deletions</div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Fake testimonials deleted</strong> — all six gone</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Fake store locator deleted</strong> — all six fake shops gone</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Stats section deleted</strong> — all zeros gone</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Newsletter signup deleted</strong></div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>No prices anywhere on site</strong></div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Credential badges only in footer</strong> — nowhere else</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>No story/about section</strong></div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>No margin math visible</strong></div></div>
+      <div class="clabel" style="margin-bottom:12px;margin-top:28px;">Hero</div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Bansuri + Mor Pankh logo</strong> in navbar</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>"बजरंगी।"</strong> line 1 — white 76px</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>"मतलब भरोसा।"</strong> line 2 — red 48px</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>"100" static hardcoded</strong> — NOT zero or animated</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Shield badge</strong> in hero right panel</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>"गिन के देखो!"</strong> below the number</div></div>
+    </div>
+    <div>
+      <div class="clabel" style="margin-bottom:12px;">Sections</div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Three proof cards</strong> with exact copy</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Challenge line + comparison</strong> in proof section</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>All 8 products</strong> — no prices</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Color/Silver toggle</strong> functional</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>3 USP badges</strong> on every product card</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Occasions — 6 icons only</strong> — no attack line below</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Attack section — 3 lines only</strong> (1, 3, 6)</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Sticker visual</strong> in attack section</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Retailer form → WhatsApp</strong> (no email backend)</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Only 3 real stockists</strong> in Find Us</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>"पूरा माल। पक्का भरोसा। हर बार।"</strong> in footer</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Floating WA button</strong> always visible</div></div>
+      <div class="chk-row"><div class="chk-box"></div><div class="chk-txt"><strong>Tested on Android phone</strong> — mobile verified</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 15 DEV CONTEXT -->
+<div class="doc-sec dk">
+  <div class="sec-eye"><span class="sec-n">15</span><span class="tag g">Dev Context</span></div>
+  <div class="doc-h">Developer Context Block</div>
+  <div class="doc-sub">Paste at start of EVERY session. No exceptions.</div>
+  <div class="code"><span class="y">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="y">BAJRANGI — WEBSITE BLUEPRINT v2 — FINAL</span>
+<span class="y">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+
+BRAND:  Bajrangi — paper dona & plate
+CO:     Eshanura Enterprises Pvt. Ltd., Lakhimpur-Kheri, UP
+URL:    bajrangi.eshanura.com
+PHONE:  9839436346
+EMAIL:  care@bajrangi.eshanura.com
+SOCIAL: @bajrangi.eshanura
+
+<span class="y">━━━ BRAND TAGLINE — MUST BE IN HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r">"बजरंगी। मतलब भरोसा।"</span>
+Line 1: "बजरंगी।" — Baloo 2, 800, 76px, white
+Line 2: "मतलब भरोसा।" — Baloo 2, 800, 48px, #C8181A
+
+<span class="y">━━━ HERO NUMBER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r">HARDCODE "100" AS STATIC TEXT. DO NOT ANIMATE. NEVER SHOW ZERO.</span>
+Below: "माने पूरे 100 — गिन के देखो!" — Baloo 2, 28px, red
+
+<span class="y">━━━ LOGO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+Bansuri + Mor Pankh + "बजरंगी ™" — Navbar, Hero right panel, Footer
+
+<span class="y">━━━ SHIELD BADGE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+★★★ / सिर्फ बजरंगी में / टेम्पर-प्रूफ नेक सीलिंग
+"खुलेगा नहीं, टिकेगा सही!" → Gold border, dark red bg, hero right panel
+
+<span class="y">━━━ COLORS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r">--red: #C8181A</span>  <span class="y">--gold: #D4A84B</span>  <span class="c">--night: #0C0C0C</span>
+--cream: #FAF3E0  --ink: #1A0800
+Ratios: 55% cream / 25% night / 12% red / 8% gold
+
+<span class="y">━━━ FONTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+Baloo 2 800 → Hindi headlines, brand, CTAs
+Space Mono 700 → Numbers, badges, eyebrows
+DM Sans 400 → Body, English text
+
+<span class="y">━━━ SECTIONS IN ORDER (7 total) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+1. HERO       → बजरंगी। मतलब भरोसा। + Shield + 100 static
+2. PROOF      → 3 cards + comparison + challenge line
+3. PRODUCTS   → 8 items, NO PRICES, Color/Silver toggle
+4. OCCASIONS  → 6 icons only, headline only, NO attack line
+5. ATTACK     → 3 lines only (campaign + math + Awadhi) + sticker
+6. RETAILER   → Pitch + 4 benefits + form (NO margin math)
+7. FIND US    → 3 real stockists only + direct WA order
+
+<span class="y">━━━ PRODUCTS (no prices shown anywhere on site) ━━━━━━━━━━━━━━━━━━</span>
+चटनी डोना  4"    Color+Silver  100 pcs
+बताशा डोना 5.5"  Color+Silver  100 pcs
+समोसा डोना 6"    Color+Silver  100 pcs  +  Silver Plate 50 pcs
+कटोरा डोना 7"    Color+Silver  50 pcs   +  Silver Plate 50 pcs
+बड़ा कटोरा  8"    Color+Silver  50 pcs   +  Silver Plate 50 pcs
+
+<span class="y">━━━ ATTACK LINES (3 only) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r">"50 माने 50। गिन के देखो।"</span>
+<span class="r">"उनके 50 में 44 मिलेंगे। हमारे में 50। हिसाब आपका।"</span>
+<span class="r">"पचास ठो माँगो, पचास ठो मिलिहैं। इहै बा बजरंगी।"</span>
+
+<span class="y">━━━ STOCKISTS (3 real only) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+Laxmi Kirana — Rakehati, Nighasan, Kheri UP
+Amit Kirana  — Belrayan, Kheri UP
+SK Samosa    — DC Road, Lakhimpur-Kheri UP
+
+<span class="y">━━━ CREDENTIALS — FOOTER ONLY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+Pvt. Ltd. + Startup India + MSME + GST
+ONLY in footer. Remove from hero, sections, everywhere else.
+
+<span class="y">━━━ HARD RULES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r">✗ NO prices anywhere on website
+✗ NO fake testimonials
+✗ NO fake store locator
+✗ NO invented stats
+✗ NO animated counter (hardcode 100)
+✗ NO story/about section
+✗ NO margin math
+✗ NO shopping cart or payment gateway
+✗ NO credential badges outside footer
+✗ NO emotional/sentimental language</span>
+
+<span class="y">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="y">Jo likha hai — woh hi milega.</span>
+<span class="y">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span></div>
+</div>
+
+<!-- FOOTER -->
+<div class="doc-foot">
+  <div>
+    <div class="df-brand">बजरंगी</div>
+    <div class="df-tag">मतलब भरोसा... · Jo likha hai — woh hi milega.</div>
+  </div>
+  <div class="df-meta">
+    Eshanura Enterprises Pvt. Ltd. · Pvt. Ltd. · Startup India · MSME · GST<br>
+    908, Hathipur-Uttari, Lakhimpur-Kheri (U.P.) 262701<br>
+    bajrangi.eshanura.com<br>
+    care@bajrangi.eshanura.com · 9839436346<br>
+    @bajrangi.eshanura<br><br>
+    Sisters: paatra.co.in · easycare.eshanura.com
+  </div>
+</div>
+
+</body>
+</html>

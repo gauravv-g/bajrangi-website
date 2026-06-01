@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Bajrangi Brand Colors */
+  --color-bj-red:    #C8181A;
+  --color-bj-gold:   #D4A84B;
+  --color-bj-night:  #0C0C0C;
+  --color-bj-cream:  #FAF3E0;
+  --color-bj-ink:    #1A0800;
+  --color-bj-mid:    #6B5B4E;
+  --color-bj-warm:   #FFF8F0;
+
+  /* Tailwind token overrides */
+  --color-background: #FAF3E0;
+  --color-foreground: #1A0800;
+  --color-primary:    #C8181A;
+  --color-primary-foreground: #ffffff;
+  --color-accent:     #D4A84B;
+  --color-muted:      #FFF8F0;
+  --color-muted-foreground: #6B5B4E;
+  --color-border:     rgba(200,24,26,0.12);
+  --color-ring:       #C8181A;
+  --radius: 0.625rem;
+}
+
+/* ─── Fonts ─────────────────────────────────────── */
+.font-baloo      { font-family: 'Baloo 2', cursive; }
+.font-mono-space { font-family: 'Space Mono', monospace; }
+.font-dm         { font-family: 'DM Sans', sans-serif; }
+
+/* ─── Base ───────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+@layer base {
+  * { @apply border-[rgba(200,24,26,0.12)] outline-[#C8181A]/50; }
+  body { @apply bg-[#FAF3E0] text-[#1A0800]; font-family: 'DM Sans', sans-serif; }
+}
+
+/* ─── Gold Shimmer Text ──────────────────────────── */
+@keyframes gold-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #D4A84B 0%, #FFD700 20%, #D4A84B 40%,
+    #FFF8DC 50%, #D4A84B 60%, #FFD700 80%, #D4A84B 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shimmer 3s linear infinite;
+}
+
+/* ─── Ticker / Marquee ───────────────────────────── */
+@keyframes ticker-left  { 0% { transform: translateX(0);    } 100% { transform: translateX(-50%); } }
+@keyframes ticker-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0);    } }
+.animate-ticker-left  { animation: ticker-left  30s linear infinite; will-change: transform; }
+.animate-ticker-right { animation: ticker-right 30s linear infinite; will-change: transform; }
+
+/* ─── Ticker Row Entrance ────────────────────────── */
+@keyframes ticker-enter-1 {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+@keyframes ticker-enter-2 {
+  from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+}
+.animate-ticker-entrance-1 { animation: ticker-enter-1 0.7s ease-out 1.2s both; }
+.animate-ticker-entrance-2 { animation: ticker-enter-2 0.7s ease-out 1.5s both; }
+
+/* ─── Shield Float ───────────────────────────────── */
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0);    }
+  50%      { transform: translateY(-8px); }
+}
+.animate-float-badge { animation: float-badge 4s ease-in-out infinite; }
+
+/* ─── WhatsApp Ping ──────────────────────────────── */
+@keyframes wa-ping {
+  0%   { transform: scale(1);   opacity: 0.6; box-shadow: 0 0 0 0   rgba(37,211,102,0.4); }
+  70%  { transform: scale(1.4); opacity: 0;   box-shadow: 0 0 0 14px rgba(37,211,102,0);   }
+  100% { transform: scale(1.4); opacity: 0;   box-shadow: 0 0 0 0   rgba(37,211,102,0);   }
+}
+.animate-wa-ping { animation: wa-ping 2s cubic-bezier(0,0,0.2,1) infinite; }
+
+/* ─── Shine Sweep ────────────────────────────────── */
+@keyframes shine-sweep {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(100%);  }
+  100% { transform: translateX(100%);  }
+}
+
+/* ─── Noise Texture (dark sections) ─────────────── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ─── Custom Scrollbar ───────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(200,24,26,0.05); }
+::-webkit-scrollbar-thumb { background: rgba(200,24,26,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(200,24,26,0.4); }
