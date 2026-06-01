@@ -37,7 +37,7 @@ export function ThreeTruths() {
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5 }}
         >
-          <p className="font-mono-space text-[#D4A84B] text-[10px] tracking-[4px] uppercase mb-3">बजरंगी क्यों?</p>
+          <p className="font-mono-space text-[#F5C563] text-[10px] tracking-[4px] uppercase mb-3">बजरंगी क्यों?</p>
           <h2 className="font-baloo text-[clamp(28px,5vw,48px)] text-white font-extrabold leading-tight">
             तीन बातें। <span className="text-shimmer">सीधी।</span>
           </h2>
@@ -67,7 +67,7 @@ export function ThreeTruths() {
               </h3>
 
               {/* Sub — 3 words max */}
-              <p className="font-mono-space text-[#D4A84B] text-sm tracking-wide">
+              <p className="font-mono-space text-[#F5C563] text-sm tracking-wide">
                 {truth.sub}
               </p>
             </motion.div>

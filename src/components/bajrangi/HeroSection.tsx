@@ -79,7 +79,7 @@ export function HeroSection({ tagline, promise, whatsappNumber }: HeroSectionPro
 
           {/* Brand line — the only copy that matters */}
           <motion.p
-            className="font-baloo font-bold text-[#D4A84B] mb-8"
+            className="font-baloo font-bold text-[#F5C563] mb-8"
             style={{ fontSize: 'clamp(20px,2.8vw,30px)' }}
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}

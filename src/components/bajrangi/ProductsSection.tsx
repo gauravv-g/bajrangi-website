@@ -183,7 +183,7 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
                   {/* Details Area — padding 20px */}
                   <div className="p-6 flex flex-col flex-1">
                     {/* Size mark — top */}
-                    <span className="font-mono-space text-[10px] text-[#D4A84B] font-bold uppercase tracking-[0.2em] mb-2 block">
+                    <span className="font-mono-space text-[10px] text-[#F5C563] font-bold uppercase tracking-[0.2em] mb-2 block">
                       {product.size.replace('"', '')} INCH SIZE
                     </span>
 
