@@ -23,10 +23,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Eshanura Enterprises Pvt. Ltd.' }],
   icons: {
-    icon: [
-      { url: '/favicon.svg?v=2', type: 'image/svg+xml' },
-      { url: '/Bajrangi.png?v=2', type: 'image/png' },
-    ],
+    icon: '/favicon.png?v=3',
   },
   openGraph: {
     title: 'बजरंगी - Paper Dona & Plate Wholesale | Lakhimpur-Kheri, UP',
