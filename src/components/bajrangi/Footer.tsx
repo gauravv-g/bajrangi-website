@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 interface FooterProps {
   whatsappNumber: string
@@ -143,21 +142,6 @@ export function Footer({ whatsappNumber, phone, email, address }: FooterProps) {
                   {p}
                 </p>
               ))}
-            </div>
-            <div className="pt-2 space-y-2 border-t border-white/8">
-              <p className="font-mono-space text-[#F5C563] text-[10px] tracking-[3px] uppercase font-bold mb-3">Quick Links</p>
-              <Link
-                href="/price-list"
-                className="block font-dm text-white/70 hover:text-[#F5C563] text-sm transition-colors"
-              >
-                → Price List 2025
-              </Link>
-              <Link
-                href="/wholesale"
-                className="block font-dm text-white/70 hover:text-[#F5C563] text-sm transition-colors"
-              >
-                → Wholesale Order
-              </Link>
             </div>
           </div>
 
