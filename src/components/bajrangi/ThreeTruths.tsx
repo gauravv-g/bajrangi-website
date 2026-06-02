@@ -7,21 +7,48 @@ const truths = [
     number: '01',
     line: 'हर दोना गिना।',
     sub: 'कोई shortcut नहीं।',
-    icon: '✋',
   },
   {
     number: '02',
     line: 'पर्ची हमेशा अंदर।',
     sub: 'खोलो। गिनो। मिलाओ।',
-    icon: '📋',
   },
   {
     number: '03',
     line: 'मशीन से सील।',
     sub: 'एक बार। कोई छेड़छाड़ नहीं।',
-    icon: '🔒',
   },
 ]
+
+const getIcon = (num: string) => {
+  if (num === '01') {
+    return (
+      <svg className="w-12 h-12 text-[#D4A84B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5" />
+        <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v6" />
+        <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8c0 4.418 3.582 8 8 8h1a8 8 0 0 0 8-8v-3a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2" />
+      </svg>
+    )
+  }
+  if (num === '02') {
+    return (
+      <svg className="w-12 h-12 text-[#D4A84B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M9 7h6" />
+        <path d="M9 11h6" />
+        <path d="M9 15h4" />
+        <circle cx="16" cy="15" r="1.5" className="fill-[#C8181A]" stroke="none" />
+      </svg>
+    )
+  }
+  return (
+    <svg className="w-12 h-12 text-[#D4A84B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="11" width="14" height="10" rx="2" />
+      <path d="M12 2a5 5 0 0 0-5 5v4h10V7a5 5 0 0 0-5-5z" />
+      <circle cx="12" cy="16" r="1.5" className="fill-[#D4A84B]" />
+    </svg>
+  )
+}
 
 export function ThreeTruths() {
   return (
@@ -59,7 +86,7 @@ export function ThreeTruths() {
                 {truth.number}
               </span>
 
-              <div className="text-4xl mb-6">{truth.icon}</div>
+              <div className="mb-6">{getIcon(truth.number)}</div>
 
               {/* The line — the only thing that matters */}
               <h3 className="font-baloo text-[clamp(28px,4.5vw,36px)] text-white font-extrabold leading-tight mb-2.5">

@@ -45,6 +45,17 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
     return variant === 'Silver' ? '/silver-dona1.png' : '/color-dona.png'
   }
 
+  const getScaleFactor = (sizeStr: string) => {
+    const size = parseFloat(sizeStr.replace('"', ''))
+    if (isNaN(size)) return 1.0
+    if (size <= 4) return 0.72   // Chutney
+    if (size <= 5.5) return 0.85 // Batasha
+    if (size <= 6) return 1.0    // Samosa
+    if (size <= 7) return 1.15   // Katora
+    if (size <= 8) return 1.28   // Bada Katora
+    return 1.4                   // Thali / Large Plates
+  }
+
   return (
     <section id="products" className="bg-[#FAF3E0] px-5 md:px-12 lg:px-20 py-20 md:py-28 relative overflow-hidden">
       {/* Decorative background watermark */}
@@ -93,6 +104,7 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
             {(['Color', 'Silver'] as const).map(v => (
               <button
                 key={v}
+                type="button"
                 role="radio"
                 aria-checked={activeVariant === v}
                 onClick={() => setActiveVariant(v)}
@@ -172,9 +184,10 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
                         alt={`${product.nameHi} — ${activeVariant}`}
                         fill
                         priority
-                        className="object-cover"
+                        className="object-contain"
                         style={{
                           filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.08))',
+                          transform: `scale(${getScaleFactor(product.size)})`,
                         }}
                       />
                     </motion.div>
@@ -201,12 +214,22 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
                     <div className="h-px bg-[#1A0800]/8 w-full mb-4" />
 
                     {/* Packing Details block */}
-                    <div className="mb-5 flex items-center justify-between">
+                    <div className="mb-4 flex items-center justify-between">
                       <span className="font-mono-space text-sm text-[#6B5B4E] tracking-wide font-medium">
                         Standard Packing
                       </span>
                       <span className="font-mono-space text-sm font-extrabold text-[#1A0800]">
                         {product.pack.replace('pcs', 'Pcs')}
+                      </span>
+                    </div>
+
+                    {/* Pricing Block */}
+                    <div className="mb-5 flex items-center justify-between border-t border-[#1A0800]/5 pt-3">
+                      <span className="font-mono-space text-xs text-[#6B5B4E] tracking-wider uppercase font-semibold">
+                        Wholesale Price
+                      </span>
+                      <span className="font-mono-space text-xs text-[#C8181A] font-bold uppercase tracking-wider">
+                        Contact for Bulk Rates
                       </span>
                     </div>
 
@@ -219,7 +242,14 @@ export function ProductsSection({ products, whatsappNumber }: ProductsSectionPro
 
                     {/* WhatsApp CTA — flush to card bottom */}
                     <motion.a
-                      href={getWhatsAppLink(whatsappNumber, product.nameHi, product.nameEn, product.size, activeVariant, product.pack)}
+                      href={getWhatsAppLink(
+                        whatsappNumber,
+                        product.nameHi,
+                        product.nameEn,
+                        product.size,
+                        activeVariant,
+                        product.pack
+                      )}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="relative overflow-hidden bg-[#C8181A] text-white font-dm font-semibold text-sm py-4 rounded-lg w-full flex items-center justify-center cursor-pointer border border-[#D4A84B]/20 hover:border-[#D4A84B]/40 shadow-sm"

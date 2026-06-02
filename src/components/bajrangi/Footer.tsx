@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface FooterProps {
   whatsappNumber: string
@@ -67,6 +68,15 @@ export function Footer({ whatsappNumber, phone, email, address }: FooterProps) {
                 <span className="font-mono-space text-xs md:text-sm tracking-[1.5px] text-[#F5C563] border border-[#F5C563]/30 px-3.5 py-2 rounded bg-[#FAF3E0]/5 font-semibold">
                   CIN: U17099UP2025PTC214526
                 </span>
+                <span className="font-mono-space text-xs md:text-sm tracking-[1.5px] text-[#FAF3E0]/70 border border-white/10 px-3.5 py-2 rounded bg-white/5 font-semibold">
+                  Startup India
+                </span>
+                <span className="font-mono-space text-xs md:text-sm tracking-[1.5px] text-[#FAF3E0]/70 border border-white/10 px-3.5 py-2 rounded bg-white/5 font-semibold">
+                  MSME Registered
+                </span>
+                <span className="font-mono-space text-xs md:text-sm tracking-[1.5px] text-[#FAF3E0]/70 border border-white/10 px-3.5 py-2 rounded bg-white/5 font-semibold">
+                  GST Compliant
+                </span>
               </div>
 
               <div className="space-y-3.5 pt-2 text-base text-white/90">
@@ -93,12 +103,14 @@ export function Footer({ whatsappNumber, phone, email, address }: FooterProps) {
               </div>
               <div>
                 <p className="font-mono-space text-white/50 text-xs tracking-[2px] uppercase font-semibold mb-1.5">Customer Care</p>
+                <span dangerouslySetInnerHTML={{ __html: '<!--email_off-->' }} />
                 <a
                   href={`mailto:${email}`}
                   className="font-dm text-lg text-white/90 hover:text-[#F5C563] transition-colors break-all font-medium"
                 >
                   {email}
                 </a>
+                <span dangerouslySetInnerHTML={{ __html: '<!--/email_off-->' }} />
               </div>
               <div className="grid grid-cols-2 gap-4 pt-1">
                 <div>
@@ -113,10 +125,10 @@ export function Footer({ whatsappNumber, phone, email, address }: FooterProps) {
             </div>
           </div>
 
-          {/* Col 3 — Products */}
+          {/* Col 3 — Products & Links */}
           <div className="space-y-5">
             <p className="font-mono-space text-[#F5C563] text-xs md:text-sm tracking-[4px] uppercase font-bold mb-4">Products</p>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3.5 text-base md:text-lg">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-base">
               {[
                 'चटनी दोना — 4"',
                 'बताशा दोना — 5.5"',
@@ -125,16 +137,39 @@ export function Footer({ whatsappNumber, phone, email, address }: FooterProps) {
                 'कटोरा दोना — 7"',
                 'कटोरा प्लेट — 7"',
                 'बड़ा कटोरा — 8"',
-                'बड़ी प्लेट — 8"',
                 'सिल्वर थाली — 12"',
               ].map(p => (
-                <p key={p} className="font-baloo text-white/85 hover:text-white transition-colors cursor-default font-medium">
+                <p key={p} className="font-baloo text-white/75 font-medium text-sm">
                   {p}
                 </p>
               ))}
             </div>
+            <div className="pt-2 space-y-2 border-t border-white/8">
+              <p className="font-mono-space text-[#F5C563] text-[10px] tracking-[3px] uppercase font-bold mb-3">Quick Links</p>
+              <Link
+                href="/price-list"
+                className="block font-dm text-white/70 hover:text-[#F5C563] text-sm transition-colors"
+              >
+                → Price List 2025
+              </Link>
+              <Link
+                href="/wholesale"
+                className="block font-dm text-white/70 hover:text-[#F5C563] text-sm transition-colors"
+              >
+                → Wholesale Order
+              </Link>
+            </div>
           </div>
 
+        </div>
+      </div>
+
+      {/* ── Hindi SEO block ── */}
+      <div className="border-t border-[#D4A84B]/8 px-6 md:px-12 lg:px-20 py-6">
+        <div className="max-w-7xl mx-auto">
+          <p className="font-dm text-white/20 text-xs leading-relaxed max-w-3xl">
+            बजरंगी — लखीमपुर खीरी, उत्तर प्रदेश से पेपर दोना और प्लेट के थोक विक्रेता। चटनी दोना, बताशा दोना, समोसा दोना, कटोरा दोना, बड़ा कटोरा — Color और Silver वेरिएंट में। किराना थोक ऑर्डर, GST इनवॉइस, मशीन सील पैकेट। Eshanura Enterprises Pvt. Ltd., Startup India, MSME पंजीकृत।
+          </p>
         </div>
       </div>
 

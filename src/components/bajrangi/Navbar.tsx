@@ -20,8 +20,8 @@ export function Navbar({ whatsappNumber, phone }: NavbarProps) {
   }, [])
 
   const links = [
-    { label: 'Products',     href: '#products' },
-    { label: 'Bajrangi Kyun?', href: '#truths' },
+    { label: 'Products',     href: '/#products' },
+    { label: 'Bajrangi Kyun?', href: '/#truths' },
   ]
 
   return (
@@ -36,7 +36,7 @@ export function Navbar({ whatsappNumber, phone }: NavbarProps) {
       <div className={`max-w-7xl mx-auto px-5 md:px-10 flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16' : 'h-22'}`}>
 
         {/* Logo */}
-        <a href="#hero" className="flex items-center shrink-0">
+        <a href="/#hero" className="flex items-center shrink-0">
           <Image
             src="/Bajrangi.png"
             alt="बजरंगी"

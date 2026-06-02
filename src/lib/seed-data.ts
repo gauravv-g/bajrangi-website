@@ -11,6 +11,8 @@ export const SEED_PRODUCTS = [
     variants: ['Color', 'Silver'],
     bestFor: 'Chutney, pickle, dip',
     image: null,
+    priceColor: 10,
+    priceSilver: 15,
   },
   {
     _id: 'seed-2',
@@ -21,6 +23,8 @@ export const SEED_PRODUCTS = [
     variants: ['Color', 'Silver'],
     bestFor: 'Batasha, mithai, prasad, puja',
     image: null,
+    priceColor: 18,
+    priceSilver: 22,
   },
   {
     _id: 'seed-3',
@@ -31,6 +35,8 @@ export const SEED_PRODUCTS = [
     variants: ['Color', 'Silver'],
     bestFor: 'Samosa, kachori, snacks',
     image: '/dona-100pcs.png',
+    priceColor: 23,
+    priceSilver: 28,
   },
   {
     _id: 'seed-4',
@@ -41,6 +47,8 @@ export const SEED_PRODUCTS = [
     variants: ['Silver'],
     bestFor: 'Flat serving, events',
     image: null,
+    priceColor: null,
+    priceSilver: 28,
   },
   {
     _id: 'seed-5',
@@ -51,6 +59,8 @@ export const SEED_PRODUCTS = [
     variants: ['Color', 'Silver'],
     bestFor: 'Dal, sabzi, curry',
     image: null,
+    priceColor: 20,
+    priceSilver: 23,
   },
   {
     _id: 'seed-6',
@@ -61,6 +71,8 @@ export const SEED_PRODUCTS = [
     variants: ['Silver'],
     bestFor: 'Full serving, events',
     image: null,
+    priceColor: null,
+    priceSilver: 23,
   },
   {
     _id: 'seed-7',
@@ -71,6 +83,8 @@ export const SEED_PRODUCTS = [
     variants: ['Color', 'Silver'],
     bestFor: 'Langar, bhandara, full meal',
     image: null,
+    priceColor: 23,
+    priceSilver: 27,
   },
   {
     _id: 'seed-8',
@@ -81,6 +95,8 @@ export const SEED_PRODUCTS = [
     variants: ['Silver'],
     bestFor: 'Wedding bhoj, temple events',
     image: null,
+    priceColor: null,
+    priceSilver: 27,
   },
   {
     _id: 'seed-9',
@@ -91,6 +107,8 @@ export const SEED_PRODUCTS = [
     variants: ['Silver'],
     bestFor: 'Festive meals, catering, buffet, full dinner',
     image: '/silver-thali.png',
+    priceColor: null,
+    priceSilver: 35,
   },
 ]
 
